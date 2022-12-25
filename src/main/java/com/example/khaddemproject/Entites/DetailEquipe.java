@@ -1,6 +1,7 @@
 package com.example.khaddemproject.Entites;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -19,10 +20,11 @@ import java.io.Serializable;
 public class DetailEquipe implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int idDetailEquipe ;
-    int salle;
-    String thematique ;
+    private int idDetailEquipe ;
+    private int salle;
+    private String thematique ;
 
     @OneToOne ( mappedBy = "detailEquipe")
+    @JsonIgnore
     private Equipe equipe ;
 }

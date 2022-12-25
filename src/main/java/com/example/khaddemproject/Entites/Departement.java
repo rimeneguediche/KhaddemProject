@@ -1,5 +1,6 @@
 package com.example.khaddemproject.Entites;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.engine.internal.Cascade;
@@ -20,10 +21,11 @@ import java.util.Set;
 public class Departement implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int idDepart;
-    String nomDepart;
+    private int idDepartement;
+    private String nomDepartement;
 
-    @OneToMany (cascade = CascadeType.ALL, mappedBy = "departements")
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "departement")
+    @JsonIgnore
     private Set<Etudiant> etudiants ;
 
 }

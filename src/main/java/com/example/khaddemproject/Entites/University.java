@@ -19,8 +19,8 @@ import java.util.Set;
 public class University implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int idUniv;
-    String nomUniv;
+     private int idUniversite;
+    private String nomUniversite;
 
     @OneToMany ( cascade = CascadeType.ALL)
     private Set<Departement> departements ;

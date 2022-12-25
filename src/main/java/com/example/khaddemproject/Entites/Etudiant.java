@@ -1,5 +1,6 @@
 package com.example.khaddemproject.Entites;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.engine.internal.Cascade;
@@ -20,9 +21,9 @@ import java.util.Set;
 public class Etudiant implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer idEtudiant ;
-    String prenomE;
-    String nomE;
+    long idEtudiant ;
+    String prenomEtudiant;
+    String nomEtudiant;
 
 
     @Enumerated(EnumType.STRING)
@@ -30,13 +31,15 @@ public class Etudiant implements Serializable{
 
 
     @OneToMany (cascade= CascadeType.ALL, mappedBy = "etudiant")
+    @JsonIgnore
     private Set<Contrat> contrats;
 
 
     @ManyToOne
-    private  Departement departements;
+    @JsonIgnore
+    Departement departement;
 
-    @ManyToMany ( cascade = CascadeType.ALL)
-    private Set<Equipe> equipes ;
+    @ManyToMany ( cascade = CascadeType.PERSIST) // a voir
+     Set<Equipe> equips ;
 
 }
