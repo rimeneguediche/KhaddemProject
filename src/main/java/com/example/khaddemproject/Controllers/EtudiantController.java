@@ -10,9 +10,10 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping ("/Etudiant")
 public class EtudiantController {
 
-    IEtudiantServices etudiantServices;
+    private final IEtudiantServices etudiantServices;
 
     @GetMapping("/getAllEtudiant")
     public List<Etudiant> getAllEtudiant() {
@@ -42,8 +43,16 @@ public class EtudiantController {
 
 
     @PutMapping("/assignEtudiantToDepartement/{idEtudiant}/{idDepartement}")
-    public void assignEtudiantToDepartement(@PathVariable Long idEtudiant,@PathVariable Integer idDepartement){
-        etudiantServices.assignEtudiantToDepartement(idEtudiant,idDepartement);
+    public Etudiant assignEtudiantToDepartement(@PathVariable Long idEtudiant,@PathVariable Integer idDepartement){
+        return etudiantServices.assignEtudiantToDepartement(idEtudiant,idDepartement);
+    }
+
+
+    @PutMapping("/addAndAssignEtudiantToEquipeAndContract/{idEquipe}/{idContrat}")
+    @ResponseBody
+    public Etudiant addAndAssignEtudiantToEquipeAndContract(@RequestBody Etudiant e,@PathVariable("idEquipe") Integer idEquipe ,@PathVariable("idContrat") Integer idContrat){
+        return etudiantServices.addAndAssignEtudiantToEquipeAndContract(e,idEquipe,idContrat);
+
     }
 
 }

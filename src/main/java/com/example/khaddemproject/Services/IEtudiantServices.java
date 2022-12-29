@@ -18,6 +18,8 @@ public interface IEtudiantServices {
 
     Etudiant getEtudiantById(Long id);
 
-    void assignEtudiantToDepartement(Long idEtudiant, Integer idDepartement);
+    Etudiant assignEtudiantToDepartement(Long idEtudiant, Integer idDepartement);
+
+    Etudiant addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat,Integer idEquipe);
 
 }
