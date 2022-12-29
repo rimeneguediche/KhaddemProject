@@ -1,6 +1,7 @@
 package com.example.khaddemproject.Controllers;
 
 import com.example.khaddemproject.Entites.University;
+import com.example.khaddemproject.Repositorys.UniversityRepository;
 import com.example.khaddemproject.Services.IUniversiteServices;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UniversiteController {
     IUniversiteServices universiteServices;
+    private final UniversityRepository universityRepository;
 
     @GetMapping("/getAllUniversite")
     public List<University> getAllUniverite(){
@@ -43,5 +45,9 @@ public class UniversiteController {
         universiteServices.assignUniversiteToDepartement(idDepartement,idUniversite);
     }
 
+  @PostMapping("/add")
+    University addUniversites(@RequestBody University universitys){
+        return universiteServices.addOrUpdateUniversite(universitys);
+  }
 
 }

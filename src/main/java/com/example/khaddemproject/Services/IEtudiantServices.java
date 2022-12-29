@@ -4,6 +4,7 @@ package com.example.khaddemproject.Services;
 import com.example.khaddemproject.Entites.Etudiant;
 
 import java.util.List;
+import java.util.Set;
 
 public interface IEtudiantServices {
 
@@ -21,5 +22,7 @@ public interface IEtudiantServices {
     Etudiant assignEtudiantToDepartement(Long idEtudiant, Integer idDepartement);
 
     Etudiant addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat,Integer idEquipe);
+
+    List<Etudiant> getEtudiantByDepartement(Integer idDepartement);
 
 }

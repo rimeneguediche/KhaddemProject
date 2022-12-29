@@ -22,7 +22,7 @@ public class University implements Serializable {
      private int idUniversite;
     private String nomUniversite;
 
-    @OneToMany ( cascade = CascadeType.ALL)
+    @OneToMany ( cascade = {CascadeType.PERSIST ,CascadeType.REMOVE})
     private Set<Departement> departements ;
 
 }

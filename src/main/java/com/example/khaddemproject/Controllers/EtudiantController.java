@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 
 @RestController
@@ -53,6 +54,11 @@ public class EtudiantController {
     public Etudiant addAndAssignEtudiantToEquipeAndContract(@RequestBody Etudiant e,@PathVariable("idEquipe") Integer idEquipe ,@PathVariable("idContrat") Integer idContrat){
         return etudiantServices.addAndAssignEtudiantToEquipeAndContract(e,idEquipe,idContrat);
 
+    }
+
+    @GetMapping("/getEtudiantByDepartement/{idD}")
+    public List<Etudiant> getEtudiantByDepartement(@PathVariable("idD") Integer idDepartement){
+        return etudiantServices.getEtudiantByDepartement(idDepartement);
     }
 
 }

@@ -20,6 +20,8 @@ public interface IUniversiteServices {
     void assignUniversiteToDepartement(Integer idDepartement,Integer idUniversite);
 
 
+     University addOrUpdateUniversite (University u) ;
+
 
 }
 

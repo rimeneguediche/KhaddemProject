@@ -22,11 +22,12 @@ import java.util.Set;
 
 public class EtudiantServiceImp implements  IEtudiantServices {
 
-   final private   EtudiantRepository etudiantRepository ;
+    final private EtudiantRepository etudiantRepository;
     final private DepartementRepository departementRepository;
 
-    final private  EquipeRepository equipeRepository ;
-    final private ContratRepository contratRepository ;
+    final private EquipeRepository equipeRepository;
+    final private ContratRepository contratRepository;
+
     @Override
     public List<Etudiant> getALLEtudiant() {
         return etudiantRepository.findAll();
@@ -58,12 +59,12 @@ public class EtudiantServiceImp implements  IEtudiantServices {
         Etudiant etudiant = etudiantRepository.findById(idEtudiant).orElse(null);
         Departement departement = departementRepository.findById(idDepartement).orElse(null);
         etudiant.setDepartement(departement);
-        return  etudiantRepository.save(etudiant);
+        return etudiantRepository.save(etudiant);
     }
 
-     @Override
-     @Transactional
-     public Etudiant addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat,Integer idEquipe) {
+    @Override
+    @Transactional
+    public Etudiant addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat, Integer idEquipe) {
         Equipe eqp = equipeRepository.findById(idEquipe).orElse(null);
         Contrat cont = contratRepository.findById(idContrat).orElse(null);
 
@@ -72,10 +73,16 @@ public class EtudiantServiceImp implements  IEtudiantServices {
         contratRepository.save(cont);
 
 
-         Set<Equipe> equipes = new HashSet<>();
-         equipes.add(eqp);
-         e.setEquips(equipes);
+        Set<Equipe> equipes = new HashSet<>();
+        equipes.add(eqp);
+        e.setEquips(equipes);
 
-       return  etudiantRepository.save(e);
+        return etudiantRepository.save(e);
     }
+
+    @Override
+    public List<Etudiant> getEtudiantByDepartement(Integer idDepartement) {
+        return etudiantRepository.getEtudiantByDepartement_IdDepartement(idDepartement);
+    }
+
 }
